@@ -12,6 +12,8 @@
   "keywords": [],
   "bin": "./dist/index.js",
   "author": "Emil Vennervald Nielsen",
+  "repository": "https://github.com/emilvn/create-vemc-app",
+  "homepage": "https://github.com/emilvn/create-vemc-app#readme",
   "license": "ISC",
   "dependencies": {
     "commander": "^11.1.0",
