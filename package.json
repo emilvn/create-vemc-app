@@ -1,8 +1,8 @@
 {
-  "name": "vemc-app",
+  "name": "create-vemc-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/index.js",
