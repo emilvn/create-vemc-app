@@ -1,26 +1,9 @@
-
-# Compiled output
-/dist
-/tmp
-
 # Dependency directories
-/node_modules
+node_modules/
+jspm_packages/
 
-# OSX
-.DS_Store
+# Snowpack dependency directory (https://snowpack.dev/)
+web_modules/
 
-# Windows
-Thumbs.db
-
-# IntelliJ
-.idea/
-
-# Visual Studio Code
-.vscode/
-
-# Env
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# TypeScript cache
+*.tsbuildinfo\
