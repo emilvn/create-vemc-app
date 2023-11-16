@@ -7,3 +7,6 @@ web_modules/
 
 # TypeScript cache
 *.tsbuildinfo\
+
+.idea
+.vscode
