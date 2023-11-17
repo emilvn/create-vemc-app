@@ -41,11 +41,11 @@ const tsconfig_1 = require("../configs/tsconfig");
 const gitignore_1 = require("../configs/gitignore");
 const index_1 = require("../index");
 const exec = util.promisify(child_process.exec);
-function create(name) {
+function create(answers) {
     return __awaiter(this, void 0, void 0, function* () {
-        const dir = path.join(process.cwd(), name);
+        const dir = path.join(process.cwd(), answers.name);
         if (fs.existsSync(dir)) {
-            console.log(`The directory ${name} already exists.`);
+            console.log(`The directory ${answers.name} already exists.`);
             process.exit(1);
         }
         fs.mkdirSync(dir);
@@ -69,19 +69,20 @@ function create(name) {
         console.log('Creating inital files...');
         yield exec("mkdir src");
         fs.writeFileSync('src/index.ts', 'console.log("Hello, world!");');
-        console.log("Setting up git...");
-        yield exec('git init');
-        fs.writeFileSync(".gitignore", gitignore_1.gitignore);
-        yield exec('git add .');
-        yield exec('git commit -m "Initial commit"');
-        yield exec('git branch -M main');
-        console.log("Running npm install...");
-        yield exec('npm install');
+        if (answers.git) {
+            console.log("Setting up git...");
+            yield exec('git init');
+            fs.writeFileSync(".gitignore", gitignore_1.gitignore);
+            yield exec('git add .');
+            yield exec('git commit -m "Initial commit"');
+            yield exec('git branch -M main');
+        }
         console.log('Done!');
         console.log(`Your VEMC app is ready at ${dir}.`);
         console.log('To get started, run:');
-        console.log(`  cd ${name}`);
-        console.log('  npm start');
+        console.log(`  cd ${answers.name}`);
+        console.log('  npm install');
+        console.log('  npm run dev');
         rimraf.sync(path.join(dir, 'node_modules'));
         index_1.rl.close();
     });

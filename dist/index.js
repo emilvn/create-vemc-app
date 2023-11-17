@@ -48,8 +48,18 @@ console.log(figlet_1.default.textSync('Create VEMC App', { width: 80, font: 'Rec
 console.log('Welcome to the VEMC App generator!');
 console.log('This utility will walk you through creating a VEMC app.');
 console.log('It only covers the most common items, and tries to guess sensible defaults.');
-exports.rl.question('What is the name of your app? ', (answer) => __awaiter(void 0, void 0, void 0, function* () {
-    yield (0, create_1.default)(answer);
-    exports.rl.close();
+const answers = {
+    name: "vemc-app",
+    git: false
+};
+exports.rl.question('What is the name of your app? ', (answer1) => __awaiter(void 0, void 0, void 0, function* () {
+    answers.name = answer1;
+    exports.rl.question("Do you want to initialize a git repository? (y/n) ", (answer2) => __awaiter(void 0, void 0, void 0, function* () {
+        if (answer2 === "y" || answer2 === "yes") {
+            answers.git = true;
+        }
+        yield (0, create_1.default)(answers);
+        exports.rl.close();
+    }));
 }));
 //# sourceMappingURL=index.js.map

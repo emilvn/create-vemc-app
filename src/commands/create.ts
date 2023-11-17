@@ -9,10 +9,15 @@ import {rl} from "../index";
 
 const exec = util.promisify(child_process.exec);
 
-export default async function create(name: string) {
-	const dir = path.join(process.cwd(), name);
+
+interface Answers {
+	name: string;
+	git: boolean;
+}
+export default async function create(answers: Answers) {
+	const dir = path.join(process.cwd(), answers.name);
 	if (fs.existsSync(dir)) {
-		console.log(`The directory ${name} already exists.`);
+		console.log(`The directory ${answers.name} already exists.`);
 		process.exit(1);
 	}
 	fs.mkdirSync(dir);
@@ -43,25 +48,21 @@ export default async function create(name: string) {
 	fs.writeFileSync('src/index.ts', 'console.log("Hello, world!");');
 
 
-	rl.question("Do you want to initialize a git repository? (y/n) ", async (answer) => {
-		if(answer === "y" || answer === "yes") {
-			console.log("Setting up git...");
-			await exec('git init');
-			fs.writeFileSync(".gitignore", gitignore);
-			await exec('git add .');
-			await exec('git commit -m "Initial commit"');
-			await exec('git branch -M main');
-		}
-		rl.close();
-	});
-
-
+	if(answers.git) {
+		console.log("Setting up git...");
+		await exec('git init');
+		fs.writeFileSync(".gitignore", gitignore);
+		await exec('git add .');
+		await exec('git commit -m "Initial commit"');
+		await exec('git branch -M main');
+	}
 	console.log('Done!');
 	console.log(`Your VEMC app is ready at ${dir}.`);
 	console.log('To get started, run:');
-	console.log(`  cd ${name}`);
+	console.log(`  cd ${answers.name}`);
 	console.log('  npm install');
 	console.log('  npm run dev');
 	rimraf.sync(path.join(dir, 'node_modules'));
 	rl.close();
 }
+
