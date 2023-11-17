@@ -1,6 +1,12 @@
 import figlet from 'figlet';
 import * as readline from 'readline';
 import create from "./commands/create";
+import fs from "fs";
+import {gitignore} from "./configs/gitignore";
+import util from "util";
+import child_process from "child_process";
+
+const exec = util.promisify(child_process.exec);
 
 export const rl = readline.createInterface({
 	input: process.stdin,

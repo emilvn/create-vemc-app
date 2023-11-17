@@ -42,21 +42,26 @@ export default async function create(name: string) {
 	await exec("mkdir src");
 	fs.writeFileSync('src/index.ts', 'console.log("Hello, world!");');
 
-	console.log("Setting up git...");
-	await exec('git init');
-	fs.writeFileSync(".gitignore", gitignore);
-	await exec('git add .');
-	await exec('git commit -m "Initial commit"');
-	await exec('git branch -M main');
 
-	console.log("Running npm install...");
-	await exec('npm install');
+	rl.question("Do you want to initialize a git repository? (y/n) ", async (answer) => {
+		if(answer === "y" || answer === "yes") {
+			console.log("Setting up git...");
+			await exec('git init');
+			fs.writeFileSync(".gitignore", gitignore);
+			await exec('git add .');
+			await exec('git commit -m "Initial commit"');
+			await exec('git branch -M main');
+		}
+		rl.close();
+	});
+
 
 	console.log('Done!');
 	console.log(`Your VEMC app is ready at ${dir}.`);
 	console.log('To get started, run:');
 	console.log(`  cd ${name}`);
-	console.log('  npm start');
+	console.log('  npm install');
+	console.log('  npm run dev');
 	rimraf.sync(path.join(dir, 'node_modules'));
 	rl.close();
 }

@@ -3,6 +3,10 @@
 ## Usage
 
 ```bash
+npm install -g create-vemc-app
+```
+
+```bash
 npx create-vemc-app
 ```
 
