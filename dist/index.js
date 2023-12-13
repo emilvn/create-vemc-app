@@ -45,9 +45,8 @@ exports.rl = readline.createInterface({
     output: process.stdout
 });
 console.log(figlet_1.default.textSync('Create VEMC App', { width: 80, font: 'Rectangles' }));
-console.log('Welcome to the VEMC App generator!');
-console.log('This utility will walk you through creating a VEMC app.');
-console.log('It only covers the most common items, and tries to guess sensible defaults.');
+console.log('Welcome to the VEMC App generator! version 1.0.5');
+console.log('This utility will walk you through starting a new typescript project.');
 const answers = {
     name: "vemc-app",
     git: false

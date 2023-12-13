@@ -63,7 +63,7 @@ function create(answers) {
         packageJson.scripts = {
             start: "node dist/index.js",
             build: "npx tsc",
-            dev: "nodemon index.ts"
+            dev: "nodemon src/index.ts"
         };
         fs.writeFileSync('package.json', JSON.stringify(packageJson, null, 2));
         console.log('Creating inital files...');
