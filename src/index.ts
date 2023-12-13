@@ -10,7 +10,7 @@ export const rl = readline.createInterface({
 
 console.log(figlet.textSync('Create VEMC App', { width: 80, font: 'Rectangles' }));
 
-console.log('Welcome to the VEMC App generator!');
+console.log('Welcome to the VEMC App generator! version 1.0.5');
 console.log('This utility will walk you through starting a new typescript project.');
 
 const answers= {
