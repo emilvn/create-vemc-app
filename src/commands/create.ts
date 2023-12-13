@@ -39,7 +39,7 @@ export default async function create(answers: Answers) {
 	packageJson.scripts = {
 		start: "node dist/index.js",
 		build: "npx tsc",
-		dev: "nodemon index.ts"
+		dev: "nodemon src/index.ts"
 	};
 	fs.writeFileSync('package.json', JSON.stringify(packageJson, null, 2));
 
